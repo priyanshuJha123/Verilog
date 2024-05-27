@@ -1,0 +1,76 @@
+#! /c/Source/iverilog-install/bin/vvp
+:ivl_version "12.0 (devel)" "(s20150603-1539-g2693dd32b)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "C:\iverilog\lib\ivl\system.vpi";
+:vpi_module "C:\iverilog\lib\ivl\vhdl_sys.vpi";
+:vpi_module "C:\iverilog\lib\ivl\vhdl_textio.vpi";
+:vpi_module "C:\iverilog\lib\ivl\v2005_math.vpi";
+:vpi_module "C:\iverilog\lib\ivl\va_math.vpi";
+S_000001185bd0a000 .scope module, "gatelevel_tb" "gatelevel_tb" 2 12;
+ .timescale 0 0;
+v000001185bd0ab00_0 .var "a", 0 0;
+v000001185bd0aba0_0 .var "b", 0 0;
+v000001185bd0ac40_0 .var "s", 0 0;
+v000001185bd0ace0_0 .net "y", 0 0, L_000001185bbc3030;  1 drivers
+S_000001185bbf6a70 .scope module, "i" "gatelevel" 2 15, 2 1 0, S_000001185bd0a000;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "a";
+    .port_info 1 /INPUT 1 "b";
+    .port_info 2 /INPUT 1 "s";
+    .port_info 3 /OUTPUT 1 "y";
+L_000001185bbf6e80 .functor NOT 1, v000001185bd0ac40_0, C4<0>, C4<0>, C4<0>;
+L_000001185bbc2d70 .functor AND 1, v000001185bd0ab00_0, L_000001185bbf6e80, C4<1>, C4<1>;
+L_000001185bbc2ed0 .functor AND 1, v000001185bd0ac40_0, v000001185bd0aba0_0, C4<1>, C4<1>;
+L_000001185bbc3030 .functor OR 1, L_000001185bbc2d70, L_000001185bbc2ed0, C4<0>, C4<0>;
+v000001185bd0a190_0 .net "a", 0 0, v000001185bd0ab00_0;  1 drivers
+v000001185bbc28d0_0 .net "b", 0 0, v000001185bd0aba0_0;  1 drivers
+v000001185bbf6c00_0 .net "s", 0 0, v000001185bd0ac40_0;  1 drivers
+v000001185bbf6ca0_0 .net "sbar", 0 0, L_000001185bbf6e80;  1 drivers
+v000001185bbf6d40_0 .net "w1", 0 0, L_000001185bbc2d70;  1 drivers
+v000001185bbf6de0_0 .net "w2", 0 0, L_000001185bbc2ed0;  1 drivers
+v000001185bd0aa60_0 .net "y", 0 0, L_000001185bbc3030;  alias, 1 drivers
+    .scope S_000001185bd0a000;
+T_0 ;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v000001185bd0ac40_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v000001185bd0ab00_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v000001185bd0aba0_0, 0, 1;
+    %vpi_call 2 19 "$monitor", "time:%f, s=%b, a=%b, b=%b, y=%b", $time, v000001185bd0ac40_0, v000001185bd0ab00_0, v000001185bd0aba0_0, v000001185bd0ace0_0 {0 0 0};
+    %delay 5, 0;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v000001185bd0ac40_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v000001185bd0ab00_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v000001185bd0aba0_0, 0, 1;
+    %delay 5, 0;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v000001185bd0ac40_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v000001185bd0ab00_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v000001185bd0aba0_0, 0, 1;
+    %delay 5, 0;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v000001185bd0ac40_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v000001185bd0ab00_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v000001185bd0aba0_0, 0, 1;
+    %delay 5, 0;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v000001185bd0ac40_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v000001185bd0ab00_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v000001185bd0aba0_0, 0, 1;
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 3;
+    "N/A";
+    "<interactive>";
+    "2to1mux.v";

@@ -1,0 +1,27 @@
+module demux(s,d,y0,y1);
+input s,d;
+output y0,y1;
+wire sbar;
+
+assign sbar=~s;
+assign y0=sbar&d;
+assign y1=s&d;
+
+endmodule
+
+module test;
+reg s,d;
+wire y0,y1;
+
+demux i(s,d,y0,y1);
+initial
+begin
+    s=1'b0;
+    d=1'b0;
+    $monitor("time=%0t s=%b d=%b y1=%b y0=%b",$time,s,d,y1,y0);
+    #5 s=1'b0; d=1'b0;
+    #5 s=1'b0; d=1'b1;
+    #5 s=1'b1; d=1'b0;
+    #5 s=1'b1; d=1'b1;
+end 
+endmodule

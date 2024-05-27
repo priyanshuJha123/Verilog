@@ -1,0 +1,59 @@
+//All the header files
+#include <stdio.h>
+#include<stdlib.h>
+#include <sys/types.h>
+#include <sys/ipc.h>
+#include <sys/shm.h>
+
+//defining shm size
+#define size 27
+
+//Main function 
+void main()
+{
+//All the declarations of the variables
+	int shmid;
+	char *shm , *s;
+	key_t key;
+
+//Assign the value to key
+	key=5678;
+
+//Locate the shared memory segment
+	if ((shmid=shmget(key, size, 0666))<0)
+	{
+		perror("SHM get error");
+		exit(1);
+	}
+
+//Attach the memory segment
+	if ((shm = shmat(shmid, NULL, 0)) == (char *)( -1))
+	{
+	        perror("SHM at error");
+	        exit(1);
+	}
+
+//Own's Program Part
+	s=shm;
+	char str[20];
+
+	printf("Enter the string here:");
+	gets(str);
+
+	for(int i=0;str[i];i++)
+	{
+		*s++=str[i];
+	}
+
+//Assign *s as Null
+	*s=NULL;
+
+	while(*shm!='*')
+	{
+		sleep(1);
+	}
+
+	printf("No. of digits: %d\n",*s++);
+	printf("No. of alphabets: %d\n",*s++);
+	exit(0);
+}
